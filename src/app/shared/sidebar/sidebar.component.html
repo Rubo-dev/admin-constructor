@@ -1,0 +1,22 @@
+<p-sidebar
+  styleClass="w-full bg-white h-full"
+  position="left"
+  (modal)="(true)"
+  [(visible)]="visibility"
+>
+  <div pTemplate="header" class="border-b-2 mb-6 py-4">
+    <h1 class="text-xl font-bold">Choose what block you want to add</h1>
+  </div>
+   
+  <div pTemplate="content"><app-wrapper></app-wrapper></div>
+   
+</p-sidebar>
+<button
+  type="button"
+  pRipple
+  pButton
+  (click)="visibility = true"
+  class="p-button-info"
+>
+  Show
+</button>
