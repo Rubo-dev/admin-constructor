@@ -3,8 +3,74 @@
 @tailwind utilities;
 @import "~primeicons/primeicons.css";
 @import "~primeng/resources/primeng.min.css";
-@import "~primeng/resources//themes/lara-light-blue/theme.css";
+@import "~primeng/resources/themes/lara-light-blue/theme.css";
 
-.p-component-overlay.p-sidebar-mask{
-    display: none!important;
+.p-component-overlay.p-sidebar-mask {
+  display: none !important;
+}
+
+.p-accordion-tab.p-accordion-tab-active {
+  .p-toggleable-content {
+    height: auto !important;
+    overflow: inherit !important;
+  }
+}
+
+.p-accordion-tab:not(.p-accordion-tab-active) {
+  .p-toggleable-content {
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+}
+
+.error-msg {
+  color: #a94442;
+}
+
+.list-btn {
+  display: flex !important;
+  justify-content: center !important;
+  min-width: unset !important;
+  width: 120px !important;
+  height: 50px !important;
+  padding: 15px !important;
+}
+
+//list
+.input-box {
+  display: block;
+  width: 27.33%;
+  position: relative;
+}
+
+input {
+  border: 1px solid #ccc;
+  padding: 7px 14px 9px;
+  transition: 0.4s;
+}
+
+input[type='range'], input[type='color'] {
+  padding: 0;
+  border: 0;
+}
+
+input[type="text"] {
+  font: 15px/24px 'Muli', sans-serif;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+}
+
+:focus {
+  outline: none;
+}
+
+
+.delete-btn {
+  width: 25px !important;
+  height: 25px !important;
+  padding: 20px !important;
+  margin: 0 0 0 15px !important;
+  min-width: unset !important;
 }
