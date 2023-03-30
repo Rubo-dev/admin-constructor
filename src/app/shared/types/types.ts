@@ -1,5 +1,6 @@
-export interface BlockType {
-  type: string;
+export interface IComponent {
+  id: string;
+  componentRef: string;
 }
 
 export interface DomElement {

@@ -1,8 +1,26 @@
 <div class="grid grid-cols-3 p-6">
   <app-sidebar></app-sidebar>
   <div class="col-span-2 border-l-2 h-full">
-    <ng-template #dynamic>
-    </ng-template>
+    <!--    <ng-template #dynamic>-->
+    <!--    </ng-template>-->
+    <gridster [options]="options">
+      <gridster-item
+        (dragover)="layoutService.setDropId(item['id'])"
+        *ngFor="let item of layout"
+        [item]="item"
+      >
+        <ng-container
+          [componentRef]="layoutService.getComponentRef(item['id'])"
+          appLayoutItem
+        >
+        </ng-container>
+        <button
+          (click)="layoutService.deleteItem(item['id'])"
+        >
+          Delete Item
+        </button>
+      </gridster-item>
+    </gridster>
   </div>
 </div>
 <p-dialog [(visible)]="displayModal" [draggable]="false" [modal]="true" [resizable]="false"
