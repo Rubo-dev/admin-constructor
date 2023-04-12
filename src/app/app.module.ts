@@ -14,13 +14,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {DialogModule} from "primeng/dialog";
 import {SharedModule} from "./shared/shared.module";
 import {ComponentsModule} from "./components/components.module";
+import {GridsterModule} from 'angular-gridster2';
+import {LayoutComponent} from './grid/layout/layout.component';
+import {LayoutItemDirective} from "./directives/layout-item.directive";
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     HeaderComponent,
-
+    LayoutComponent,
+    LayoutItemDirective
   ],
   bootstrap: [AppComponent],
   imports: [
@@ -28,6 +32,7 @@ import {ComponentsModule} from "./components/components.module";
     AppRoutingModule,
     RouterModule,
     BrowserAnimationsModule,
+    GridsterModule,
     SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
