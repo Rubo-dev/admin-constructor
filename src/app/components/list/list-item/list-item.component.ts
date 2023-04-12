@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-list-menu-item',
@@ -6,7 +6,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./list-item.component.scss'],
 })
 export class ListItemComponent {
-  @Input() inputItems: string[] = [];
-  @Input() headerText: string = '';
-  /*  @Input() styles?: ListStyles;*/
+  @Input() props: string[] = [];
+  @Input() headerText: string | undefined;
+  //
+  // ngOnChanges(changes: SimpleChanges) {
+  //   console.log(this.props);
+  // }
 }

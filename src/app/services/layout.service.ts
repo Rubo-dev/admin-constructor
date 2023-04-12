@@ -18,22 +18,24 @@ export class LayoutService {
   };
   public layout: GridsterItem[] = [];
   public components: IComponent[] = [];
-  dropId: string = '';
+  private dropId: string = '';
 
   constructor() {
   }
 
-  addItem(): void {
+  public addItem(): string {
+    let id = UUID.UUID()
     this.layout.push({
-      cols: 5,
-      id: UUID.UUID(),
-      rows: 5,
+      cols: 1,
+      id,
+      rows: 1,
       x: 0,
       y: 0
     });
+    return id;
   }
 
-  deleteItem(id: string): void {
+  public deleteItem(id: string): void {
     const item = this.layout.find(d => d['id'] === id);
     if (item) {
       this.layout.splice(this.layout.indexOf(item), 1);
@@ -44,24 +46,27 @@ export class LayoutService {
     }
   }
 
-  setDropId(dropId: string): void {
+  public setDropId(dropId: string): void {
     this.dropId = dropId;
   }
 
-  dropItem(dragId: string): void {
+  public dropItem(data: { componentRef: any, styles?: any, props?: any, text?: string }): void {
     const {components} = this;
     const comp: IComponent | undefined = components.find(c => c.id === this.dropId);
-
     const updateIdx: number = comp ? components.indexOf(comp) : components.length;
     const componentItem: IComponent = {
       id: this.dropId,
-      componentRef: dragId
+      componentRef: data.componentRef,
+      styles: data.styles ?? '',
+      props: data.props ?? [],
+      text: data.text ?? ''
     };
     this.components = Object.assign([], components, {[updateIdx]: componentItem});
+    console.log(this.components);
   }
 
-  getComponentRef(id: string): string | null {
+  public getComponent(id: string): any | null {
     const comp = this.components.find(c => c.id === id);
-    return comp ? comp.componentRef : null;
+    return comp ?? null;
   }
 }

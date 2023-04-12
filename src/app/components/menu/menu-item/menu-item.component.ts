@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { MenuItems } from '../../../shared/types/types';
+import {Component, Input} from '@angular/core';
+import {MenuItems} from '../../../shared/types/types';
 
 @Component({
   selector: 'app-menu-item',
@@ -7,5 +7,5 @@ import { MenuItems } from '../../../shared/types/types';
   styleUrls: ['./menu-item.component.scss'],
 })
 export class MenuItemComponent {
-  @Input() menuItems?: MenuItems[];
+  @Input() props?: MenuItems[];
 }

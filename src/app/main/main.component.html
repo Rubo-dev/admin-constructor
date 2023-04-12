@@ -1,8 +1,6 @@
-<div class="grid grid-cols-3 p-6">
+<div class="flex  p-6 h-full mb-auto">
   <app-sidebar></app-sidebar>
-  <div class="col-span-2 border-l-2 h-full">
-    <!--    <ng-template #dynamic>-->
-    <!--    </ng-template>-->
+  <div class="w-full border-l-2 h-full">
     <gridster [options]="options">
       <gridster-item
         (dragover)="layoutService.setDropId(item['id'])"
@@ -10,14 +8,15 @@
         [item]="item"
       >
         <ng-container
-          [componentRef]="layoutService.getComponentRef(item['id'])"
+          [componentInfo]="layoutService.getComponent(item['id'])"
           appLayoutItem
         >
         </ng-container>
         <button
           (click)="layoutService.deleteItem(item['id'])"
+          label="Delete"
+          pButton
         >
-          Delete Item
         </button>
       </gridster-item>
     </gridster>

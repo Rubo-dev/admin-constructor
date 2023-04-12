@@ -10,10 +10,8 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {ButtonConfigs, DomElement, IComponent, ListStyles, Resolutions,} from '../shared/types/types';
+import {ButtonConfigs, DomElement, ListStyles, Resolutions,} from '../shared/types/types';
 import {ImageItemComponent} from '../components/image/image-item/image-item.component';
-import {ListItemComponent} from '../components/list/list-item/list-item.component';
-import {MenuItemComponent} from '../components/menu/menu-item/menu-item.component';
 import {LayoutService} from "../services/layout.service";
 import {GridsterConfig, GridsterItem} from "angular-gridster2";
 
@@ -38,10 +36,6 @@ export class MainComponent implements AfterViewInit {
 
   get layout(): GridsterItem[] {
     return this.layoutService.layout;
-  }
-
-  get components(): IComponent[] {
-    return this.layoutService.components;
   }
 
   ngAfterViewInit(): void {
@@ -71,20 +65,17 @@ export class MainComponent implements AfterViewInit {
   private addList(data: {
     styles: ListStyles;
     inputItems: [];
-    headerText: string;
+    header: string;
   }): void {
-    this.dynamic.map((vcr: ViewContainerRef) => {
-      const element = vcr.createComponent<ListItemComponent>(ListItemComponent);
-      element.instance.inputItems = data.inputItems;
-      element.instance.headerText = data.headerText;
-    });
+    let id = this.layoutService.addItem()
+    this.layoutService.setDropId(id)
+    this.layoutService.dropItem({componentRef: 'listComponent', props: data.inputItems, text: data.header})
   }
 
   private addMenu(data: any): void {
-    this.dynamic.map((vcr: ViewContainerRef) => {
-      const element = vcr.createComponent<MenuItemComponent>(MenuItemComponent);
-      element.instance.menuItems = data;
-    });
+    let id = this.layoutService.addItem()
+    this.layoutService.setDropId(id)
+    this.layoutService.dropItem({componentRef: 'menuComponent', props: data})
   }
 
   private addImage(data: { styles: Resolutions; imgUrl: string }): void {
@@ -98,13 +89,9 @@ export class MainComponent implements AfterViewInit {
     }
   }
 
-  private addButton(data: { styles: ButtonConfigs; text: string }): void {
-    this.layoutService.addItem()
-    // this.dynamic.map((vcr: ViewContainerRef) => {
-    //   const element =
-    //     vcr.createComponent<ButtonItemComponent>(ButtonItemComponent);
-    //   element.instance.styles = data.styles;
-    //   element.instance.text = data.text;
-    // });
+  private addButton(data: { styles: ButtonConfigs, text: string }): void {
+    let id = this.layoutService.addItem()
+    this.layoutService.setDropId(id)
+    this.layoutService.dropItem({componentRef: 'buttonComponent', styles: data.styles, text: data.text})
   }
 }
