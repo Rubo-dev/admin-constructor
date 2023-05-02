@@ -21,6 +21,9 @@ import { ListFormComponent } from './list/list-form/list-form.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 import { MenuFormComponent } from './menu/menu-form/menu-form.component';
+import { TextItemComponent } from './text/text-item/text-item.component';
+import { TextFormComponent } from './text/text-form/text-form.component';
+import { TextComponent } from './text/text.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { MenuFormComponent } from './menu/menu-form/menu-form.component';
     MenuComponent,
     MenuItemComponent,
     MenuFormComponent,
+    TextItemComponent,
+    TextFormComponent,
+    TextComponent,
   ],
   imports: [
     CommonModule,
@@ -61,6 +67,9 @@ import { MenuFormComponent } from './menu/menu-form/menu-form.component';
     ImageFormComponent,
     MenuComponent,
     MenuFormComponent,
+    TextItemComponent,
+    TextFormComponent,
+    TextComponent,
   ],
 })
 export class ComponentsModule {}

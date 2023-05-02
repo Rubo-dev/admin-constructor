@@ -38,3 +38,7 @@ export interface ListConfigs extends ListStyles {
 export interface ListStyles {
   backgroundColor: string;
 }
+
+export interface FontFamilies {
+  fontName: string;
+}

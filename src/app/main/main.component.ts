@@ -64,6 +64,9 @@ export class MainComponent implements AfterViewInit {
       case 'menu':
         this.addMenu(data);
         break;
+      case 'textarea':
+        this.addTextarea(data);
+        break;
     }
   }
 
@@ -95,6 +98,10 @@ export class MainComponent implements AfterViewInit {
       styles: data.styles,
       props: data.props,
     });
+  }
+
+  private addTextarea(data: any):void{
+    return
   }
 
   private addButton(data: { styles: ButtonConfigs; text: string }): void {

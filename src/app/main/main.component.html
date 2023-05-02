@@ -1,4 +1,4 @@
-<div class="flex  p-6 h-full mb-auto">
+<div class="flex p-6 h-full mb-auto">
   <app-sidebar></app-sidebar>
   <div class="w-full border-l-2 h-full">
     <gridster [options]="options">
@@ -16,34 +16,32 @@
           (click)="layoutService.deleteItem(item['id'])"
           label="Delete"
           pButton
-        >
-        </button>
+        ></button>
       </gridster-item>
     </gridster>
   </div>
 </div>
-<p-dialog [(visible)]="displayModal" [draggable]="false" [modal]="true" [resizable]="false"
-          [style]="{width: '50vw'}" header="Customize your element">
-  <div *ngIf="configs?.tagName==='button'">
-    <app-button-form
-      (save)="save($event)"
-    ></app-button-form>
+<p-dialog
+  [(visible)]="displayModal"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+  [style]="{ width: '50vw' }"
+  header="Customize your element"
+>
+  <div *ngIf="configs?.tagName === 'button'">
+    <app-button-form (save)="save($event)"></app-button-form>
   </div>
   <div *ngIf="configs?.tagName === 'image'">
-    <app-image-form
-      (save)="save($event)"
-    ></app-image-form>
+    <app-image-form (save)="save($event)"></app-image-form>
   </div>
   <div *ngIf="configs?.tagName === 'list'">
-    <app-list-form
-      (save)="save($event)"
-    ></app-list-form>
+    <app-list-form (save)="save($event)"></app-list-form>
   </div>
   <div *ngIf="configs?.tagName === 'menu'">
-    <app-menu-form
-      (save)="save($event)"
-    ></app-menu-form>
+    <app-menu-form (save)="save($event)"></app-menu-form>
+  </div>
+  <div *ngIf="configs?.tagName === 'textarea'">
+    <app-text-form (save)="save($event)"></app-text-form>
   </div>
 </p-dialog>
-
-
