@@ -1,4 +1,4 @@
-import {BlockService} from '../services/block.service';
+import { BlockService } from '../services/block.service';
 import {
   AfterViewInit,
   Component,
@@ -9,11 +9,16 @@ import {
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
-import {ConfirmationService, MessageService} from 'primeng/api';
-import {ButtonConfigs, DomElement, ListStyles, Resolutions,} from '../shared/types/types';
-import {ImageItemComponent} from '../components/image/image-item/image-item.component';
-import {LayoutService} from "../services/layout.service";
-import {GridsterConfig, GridsterItem} from "angular-gridster2";
+import { ConfirmationService, MessageService } from 'primeng/api';
+import {
+  ButtonConfigs,
+  DomElement,
+  ListStyles,
+  Resolutions,
+} from '../shared/types/types';
+import { ImageItemComponent } from '../components/image/image-item/image-item.component';
+import { LayoutService } from '../services/layout.service';
+import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 
 @Component({
   selector: 'app-main',
@@ -22,13 +27,13 @@ import {GridsterConfig, GridsterItem} from "angular-gridster2";
   providers: [ConfirmationService, MessageService],
 })
 export class MainComponent implements AfterViewInit {
-  @ViewChild('container', {static: false}) container!: ElementRef;
-  @ViewChildren('dynamic', {read: ViewContainerRef})
+  @ViewChild('container', { static: false }) container!: ElementRef;
+  @ViewChildren('dynamic', { read: ViewContainerRef })
   dynamic!: QueryList<ViewContainerRef>;
   public configs!: DomElement;
   public displayModal: boolean = false;
   public blockService = inject(BlockService);
-  public layoutService = inject(LayoutService)
+  public layoutService = inject(LayoutService);
 
   get options(): GridsterConfig {
     return this.layoutService.options;
@@ -67,31 +72,38 @@ export class MainComponent implements AfterViewInit {
     inputItems: [];
     header: string;
   }): void {
-    let id = this.layoutService.addItem()
-    this.layoutService.setDropId(id)
-    this.layoutService.dropItem({componentRef: 'listComponent', props: data.inputItems, text: data.header})
+    let id = this.layoutService.addItem();
+    this.layoutService.setDropId(id);
+    this.layoutService.dropItem({
+      componentRef: 'listComponent',
+      props: data.inputItems,
+      text: data.header,
+    });
   }
 
   private addMenu(data: any): void {
-    let id = this.layoutService.addItem()
-    this.layoutService.setDropId(id)
-    this.layoutService.dropItem({componentRef: 'menuComponent', props: data})
+    let id = this.layoutService.addItem();
+    this.layoutService.setDropId(id);
+    this.layoutService.dropItem({ componentRef: 'menuComponent', props: data });
   }
 
-  private addImage(data: { styles: Resolutions; imgUrl: string }): void {
-    if (data) {
-      this.dynamic.map((vcr: ViewContainerRef) => {
-        const element =
-          vcr.createComponent<ImageItemComponent>(ImageItemComponent);
-        element.instance.styles = data.styles;
-        element.instance.image = data.imgUrl;
-      });
-    }
+  private addImage(data: { styles: Resolutions; props: string }): void {
+    let id = this.layoutService.addItem();
+    this.layoutService.setDropId(id);
+    this.layoutService.dropItem({
+      componentRef: 'imageComponent',
+      styles: data.styles,
+      props: data.props,
+    });
   }
 
-  private addButton(data: { styles: ButtonConfigs, text: string }): void {
-    let id = this.layoutService.addItem()
-    this.layoutService.setDropId(id)
-    this.layoutService.dropItem({componentRef: 'buttonComponent', styles: data.styles, text: data.text})
+  private addButton(data: { styles: ButtonConfigs; text: string }): void {
+    let id = this.layoutService.addItem();
+    this.layoutService.setDropId(id);
+    this.layoutService.dropItem({
+      componentRef: 'buttonComponent',
+      styles: data.styles,
+      text: data.text,
+    });
   }
 }

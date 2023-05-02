@@ -10,7 +10,7 @@ import { Resolutions } from '../../../shared/types/types';
   styleUrls: ['./image-item.component.scss'],
 })
 export class ImageItemComponent implements AfterViewInit {
-  @Input() image?: any;
+  @Input() props?: any;
   @Input() styles?: Resolutions;
   public imageBlob?: Blob;
   public imageURL?: SafeUrl;
@@ -18,7 +18,6 @@ export class ImageItemComponent implements AfterViewInit {
   constructor(private h: HttpClient, private sanitizer: DomSanitizer) {}
 
   ngAfterViewInit() {
-    console.log(this.styles);
     this.loadImage().subscribe((i) => {
       this.imageBlob = i;
       this.imageURL = this.sanitizer.bypassSecurityTrustUrl(
@@ -28,7 +27,7 @@ export class ImageItemComponent implements AfterViewInit {
   }
 
   loadImage(): Observable<Blob> {
-    return this.h.get(this.image, {
+    return this.h.get(this.props, {
       responseType: 'blob',
     });
   }
