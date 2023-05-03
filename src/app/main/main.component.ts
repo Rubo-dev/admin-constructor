@@ -1,3 +1,4 @@
+import { TextareaStylesConfigs } from './../shared/types/types';
 import { BlockService } from '../services/block.service';
 import {
   AfterViewInit,
@@ -16,7 +17,6 @@ import {
   ListStyles,
   Resolutions,
 } from '../shared/types/types';
-import { ImageItemComponent } from '../components/image/image-item/image-item.component';
 import { LayoutService } from '../services/layout.service';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 
@@ -64,6 +64,9 @@ export class MainComponent implements AfterViewInit {
       case 'menu':
         this.addMenu(data);
         break;
+      case 'textarea':
+        this.addTextarea(data);
+        break;
     }
   }
 
@@ -94,6 +97,22 @@ export class MainComponent implements AfterViewInit {
       componentRef: 'imageComponent',
       styles: data.styles,
       props: data.props,
+    });
+  }
+
+  private addTextarea(data: {
+    styles: TextareaStylesConfigs;
+    text: string;
+  }): void {
+    console.log(data);
+    const fontFamily = data.styles.fontFamily.name;
+    const styles = { ...data.styles, fontFamily };
+    let id = this.layoutService.addItem();
+    this.layoutService.setDropId(id);
+    this.layoutService.dropItem({
+      componentRef: 'textareaComponent',
+      styles,
+      text: data.text,
     });
   }
 
