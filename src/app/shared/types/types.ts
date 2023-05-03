@@ -42,3 +42,10 @@ export interface ListStyles {
 export interface FontFamilies {
   fontName: string;
 }
+export interface TextareaStylesConfigs {
+  fontSize: string;
+  fontWeight: string;
+  fontFamily: { name: string; code: string };
+  color: string;
+  backgroundColor: string;
+}

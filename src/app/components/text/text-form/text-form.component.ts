@@ -1,4 +1,9 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Component, OnInit, Output, inject, EventEmitter } from '@angular/core';
 
 @Component({
@@ -7,22 +12,20 @@ import { Component, OnInit, Output, inject, EventEmitter } from '@angular/core';
   styleUrls: ['./text-form.component.scss'],
 })
 export class TextFormComponent implements OnInit {
-  private FormBuilder = inject(FormBuilder);
-  public form!: FormGroup;
   @Output() public save = new EventEmitter();
-
+  public form!: FormGroup;
+  public text: FormControl = new FormControl<string>('Sample text', Validators.required);
   public fontFamilies = [
-    {
-      helvetica: 'Helvetica',
-      arial: 'Arial',
-      arialBlack: 'Arial Black',
-      verdana: 'Verdana',
-      tahoma: 'Tahoma',
-      trebuchetMS: 'Trebuchet MS',
-      impact: 'Impact',
-      comicSansMS: 'Comic Sans MS',
-    },
+    { name: 'Arial', code: 'arial' },
+    { name: 'Helvetica', code: 'helvetica' },
+    { name: 'Arial Black', code: 'arialBlack' },
+    { name: 'Verdana', code: 'verdana' },
+    { name: 'Paris', code: 'tahoma' },
+    { name: 'Trebuchet MS', code: 'trebuchetMS' },
+    { name: 'Impact', code: 'impact' },
+    { name: 'Comic Sans MS', code: 'comicSansMS' },
   ];
+  private FormBuilder = inject(FormBuilder);
 
   ngOnInit(): void {
     this.initForm();
@@ -31,18 +34,21 @@ export class TextFormComponent implements OnInit {
     if (!this.form.valid) {
       this.form.markAsTouched();
     } else {
-      this.save.emit({});
+      this.save.emit({
+        styles: this.form.getRawValue(),
+        text: this.text.getRawValue(),
+      });
     }
   }
 
   private initForm(): void {
     this.form = this.FormBuilder.group({
-      text: ['', Validators.required],
-      fontSize: '',
-      fontWeight: '',
-      fontFamily: 'Arial',
-      color: '#000',
-      backgroundColor: '#fff',
+      fontSize: '16px',
+      fontWeight: '600',
+      fontFamily: this.fontFamilies[0],
+      padding: '10px',
+      color: 'black',
+      backgroundColor: 'white',
     });
   }
 }

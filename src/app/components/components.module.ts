@@ -24,6 +24,7 @@ import { MenuFormComponent } from './menu/menu-form/menu-form.component';
 import { TextItemComponent } from './text/text-item/text-item.component';
 import { TextFormComponent } from './text/text-form/text-form.component';
 import { TextComponent } from './text/text.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { TextComponent } from './text/text.component';
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
+    DropdownModule
   ],
   exports: [
     ButtonsComponent,

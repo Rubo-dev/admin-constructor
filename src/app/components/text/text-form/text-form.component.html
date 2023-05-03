@@ -1,15 +1,22 @@
 <form [formGroup]="form">
-  <div class="field col-12 md:col-4">
+  <div class="flex flex-col mb-4">
     <label for="text">Text</label>
-    <input
-      formControlName="text"
+    <textarea
+      [formControl]="text"
       id="text"
       pInputText
       placeholder="Text"
-      type="text"
-    />
+    ></textarea>
   </div>
-  <div class="field col-12 md:col-4">
+  <div class="flex flex-col mb-4 w-full">
+    <label for="fontFamily">Font Family</label>
+    <p-dropdown
+      formControlName="fontFamily"
+      [options]="fontFamilies"
+      optionLabel="name"
+    ></p-dropdown>
+  </div>
+  <div class="flex flex-col mb-4">
     <label for="fontSize">Font Size</label>
     <input
       formControlName="fontSize"
@@ -19,7 +26,7 @@
       type="text"
     />
   </div>
-  <div class="field col-12 md:col-4">
+  <div class="flex flex-col mb-4">
     <label for="fontWeight">Font Weight</label>
     <input
       formControlName="fontWeight"
@@ -29,20 +36,15 @@
       type="text"
     />
   </div>
-  <div class="field col-12 md:col-4">
-    <label for="fontFamily">Font Family</label>
-    <!-- <p-dropdown
-      formControlName="fontFamily"
-      [options]="fontFamilies"
-      optionLabel="name"
-    ></p-dropdown> -->
-    <!-- <input
-      formControlName="fontFamily"
-      id="fontFamily"
+  <div class="flex flex-col mb-4">
+    <label for="padding">Text padding</label>
+    <input
+      formControlName="padding"
+      id="padding"
       pInputText
-      placeholder="Font Family"
+      placeholder="Text padding"
       type="text"
-    /> -->
+    />
   </div>
   <div class="flex mb-4 gap-4">
     <label for="color">Color</label>

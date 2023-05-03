@@ -1,20 +1,28 @@
-import {Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-button-form',
   templateUrl: './button-form.component.html',
-  styleUrls: ['./button-form.component.scss']
+  styleUrls: ['./button-form.component.scss'],
 })
 export class ButtonFormComponent implements OnInit {
   public formSubmitAttempt = false;
-  @Output() public save = new EventEmitter()
+  @Output() public save = new EventEmitter();
   public form!: FormGroup;
-  public text: FormControl = new FormControl<string>('', Validators.required);
-  private formBuilder = inject(FormBuilder)
+  public text: FormControl = new FormControl<string>(
+    'Click',
+    Validators.required
+  );
+  private formBuilder = inject(FormBuilder);
 
   ngOnInit(): void {
-    this.initForm()
+    this.initForm();
   }
 
   public submit(): void {
@@ -22,23 +30,20 @@ export class ButtonFormComponent implements OnInit {
       this.formSubmitAttempt = true;
       this.form.markAsTouched();
     } else {
-      this.save.emit(
-        {
-          styles: this.form.getRawValue(),
-          text: this.text.getRawValue()
-        }
-      )
+      this.save.emit({
+        styles: this.form.getRawValue(),
+        text: this.text.getRawValue(),
+      });
     }
   }
 
   private initForm(): void {
     this.form = this.formBuilder.group({
-      color: ['', Validators.required],
-      backgroundColor: '',
+      color: 'white',
+      backgroundColor: 'black',
       width: '120px',
       height: '50px',
-      padding: '10px'
-    })
+      padding: '10px',
+    });
   }
-
 }
