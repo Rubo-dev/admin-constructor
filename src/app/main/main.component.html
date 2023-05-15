@@ -1,8 +1,48 @@
-<div class="grid grid-cols-3 p-6">
+<div class="flex p-6 h-full mb-auto">
   <app-sidebar></app-sidebar>
-  <div class="col-span-2 border-l-2 h-full">
-    <ng-template #button>
-      <button #button></button>
-    </ng-template>
+  <div class="w-full border-l-2 h-full">
+    <p class="text-xl pl-4 mb-4">Your components will be shown here</p>
+    <gridster [options]="options">
+      <gridster-item
+        (dragover)="layoutService.setDropId(item['id'])"
+        *ngFor="let item of layout"
+        [item]="item"
+      >
+        <ng-container
+          [componentInfo]="layoutService.getComponent(item['id'])"
+          appLayoutItem
+        >
+        </ng-container>
+        <button
+          (click)="layoutService.deleteItem(item['id'])"
+          label="Delete"
+          pButton
+        ></button>
+      </gridster-item>
+    </gridster>
   </div>
 </div>
+<p-dialog
+  [(visible)]="displayModal"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+  [style]="{ width: '50vw' }"
+  header="Customize your element"
+>
+  <div *ngIf="configs?.tagName === 'button'">
+    <app-button-form (save)="save($event)"></app-button-form>
+  </div>
+  <div *ngIf="configs?.tagName === 'image'">
+    <app-image-form (save)="save($event)"></app-image-form>
+  </div>
+  <div *ngIf="configs?.tagName === 'list'">
+    <app-list-form (save)="save($event)"></app-list-form>
+  </div>
+  <div *ngIf="configs?.tagName === 'menu'">
+    <app-menu-form (save)="save($event)"></app-menu-form>
+  </div>
+  <div *ngIf="configs?.tagName === 'textarea'">
+    <app-text-form (save)="save($event)"></app-text-form>
+  </div>
+</p-dialog>

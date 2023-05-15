@@ -1,0 +1,78 @@
+<form (submit)="submit()" [formGroup]="form">
+  <div class="mb-4">
+    <label for="text">Text*</label>
+    <input
+      [formControl]="text"
+      id="text"
+      pInputText
+      placeholder="Button text"
+      type="text"
+    />
+    <span
+      *ngIf="formSubmitAttempt && (form | formValidator : 'text')"
+      class="error-msg"
+    >
+      Text is required
+    </span>
+  </div>
+
+  <div class="mb-4">
+    <label for="width">Width</label>
+    <input
+      formControlName="width"
+      id="width"
+      pInputText
+      placeholder="Button width"
+      type="text"
+    />
+  </div>
+  <div class="mb-4">
+    <label for="height">Height</label>
+    <input
+      formControlName="height"
+      id="height"
+      pInputText
+      placeholder="Button Height"
+      type="text"
+    />
+  </div>
+  <div class="mb-4">
+    <label for="padding">Padding</label>
+    <input
+      formControlName="padding"
+      id="padding"
+      pInputText
+      placeholder="Button padding"
+      type="text"
+    />
+  </div>
+  <div class="flex mb-4 gap-4">
+    <label for="color">Color*</label>
+    <input
+      formControlName="color"
+      id="color"
+      pInputText
+      value="#ffffff"
+      type="color"
+    />
+  </div>
+  <div class="flex mb-4 gap-4">
+    <label for="backgroundColor">Background Color</label>
+    <input
+      formControlName="backgroundColor"
+      id="backgroundColor"
+      pInputText
+      value="#000000"
+      type="color"
+    />
+  </div>
+  <div class="mt-2 flex">
+    <p-button
+      class="ml-auto"
+      icon="pi pi-check"
+      label="Submit"
+      styleClass="p-button-text"
+      type="submit"
+    ></p-button>
+  </div>
+</form>

@@ -1,17 +1,16 @@
-import { BlockService } from '../../services/block.service';
-import { Component } from '@angular/core';
-import { DOMElementEnum } from 'src/app/shared/enums/enums';
+import {Component, inject} from '@angular/core';
+import {BlockService} from "../../services/block.service";
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
-export class BlocksComponent {
-  public type = DOMElementEnum.BUTTON;
-  constructor(private blockService: BlockService) {}
+export class ButtonsComponent {
+  private blockService = inject(BlockService);
 
-  public handleClick(elemType: DOMElementEnum) {
-    this.blockService.$subject.next(elemType);
+  public handleClick(domElement: any) {
+    const elem = domElement.target.outerText.split(' ').pop();
+    this.blockService.setBlock({tagName: elem, display: true});
   }
 }
