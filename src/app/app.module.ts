@@ -15,7 +15,6 @@ import { DialogModule } from 'primeng/dialog';
 import { SharedModule } from './shared/shared.module';
 import { ComponentsModule } from './components/components.module';
 import { GridsterModule } from 'angular-gridster2';
-import { LayoutComponent } from './grid/layout/layout.component';
 import { LayoutItemDirective } from './directives/layout-item.directive';
 import { PrimeTemplate } from 'primeng/api';
 
@@ -24,7 +23,6 @@ import { PrimeTemplate } from 'primeng/api';
     AppComponent,
     MainComponent,
     HeaderComponent,
-    LayoutComponent,
     LayoutItemDirective,
   ],
   bootstrap: [AppComponent],

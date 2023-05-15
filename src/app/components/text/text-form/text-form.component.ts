@@ -14,7 +14,10 @@ import { Component, OnInit, Output, inject, EventEmitter } from '@angular/core';
 export class TextFormComponent implements OnInit {
   @Output() public save = new EventEmitter();
   public form!: FormGroup;
-  public text: FormControl = new FormControl<string>('Sample text', Validators.required);
+  public text: FormControl = new FormControl<string>(
+    'Sample text',
+    Validators.required
+  );
   public fontFamilies = [
     { name: 'Arial', code: 'arial' },
     { name: 'Helvetica', code: 'helvetica' },
@@ -38,6 +41,8 @@ export class TextFormComponent implements OnInit {
         styles: this.form.getRawValue(),
         text: this.text.getRawValue(),
       });
+      this.form.reset();
+      this.text.reset();
     }
   }
 

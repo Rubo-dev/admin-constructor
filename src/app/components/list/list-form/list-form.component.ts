@@ -1,5 +1,5 @@
-import {Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list-form',
@@ -25,6 +25,8 @@ export class ListFormComponent implements OnInit {
         header: this.form.get('header')?.getRawValue(),
         inputItems: this.items,
       });
+      this.newTask = '';
+      this.items = [];
     }
   }
 
