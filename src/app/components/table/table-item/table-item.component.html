@@ -1,0 +1,51 @@
+<p-table
+  #myTab
+  [value]="tableData"
+  [scrollable]="true"
+  [columns]="cols"
+  scrollHeight="400px"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Age</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-people>
+    <tr>
+      <td pEditableColumn>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText type="text" [(ngModel)]="people.firstname" />
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ people.firstname }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td pEditableColumn>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText type="text" [(ngModel)]="people.lastname" />
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ people.lastname }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td pEditableColumn>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText type="text" [(ngModel)]="people.age" />
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ people.age }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<button (click)="addRow()" pButton type="button" label="Add row"></button>

@@ -25,6 +25,10 @@ import { TextItemComponent } from './text/text-item/text-item.component';
 import { TextFormComponent } from './text/text-form/text-form.component';
 import { TextComponent } from './text/text.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { TableComponent } from './table/table.component';
+import { TableItemComponent } from './table/table-item/table-item.component';
+import { StepsModule } from 'primeng/steps';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,8 @@ import { DropdownModule } from 'primeng/dropdown';
     TextItemComponent,
     TextFormComponent,
     TextComponent,
+    TableComponent,
+    TableItemComponent,
   ],
   imports: [
     CommonModule,
@@ -50,13 +56,15 @@ import { DropdownModule } from 'primeng/dropdown';
     FormValidatorPipe,
     RippleModule,
     AccordionModule,
+    StepsModule,
     DialogModule,
     FileUploadModule,
     TreeModule,
     FormsModule,
     ReactiveFormsModule,
+    TableModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
   ],
   exports: [
     ButtonsComponent,
@@ -72,6 +80,8 @@ import { DropdownModule } from 'primeng/dropdown';
     TextItemComponent,
     TextFormComponent,
     TextComponent,
+    TableComponent,
+    TableItemComponent,
   ],
 })
 export class ComponentsModule {}
