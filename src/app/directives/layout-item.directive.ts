@@ -1,19 +1,21 @@
-import {ComponentRef, Directive, Input, OnChanges, ViewContainerRef} from '@angular/core';
-import {components} from "../shared/componentItems";
-import {IComponent} from "../shared/types/types";
-
+import {
+  ComponentRef,
+  Directive,
+  Input,
+  OnChanges,
+  ViewContainerRef,
+} from '@angular/core';
+import { components } from '../shared/componentItems';
+import { IComponent } from '../shared/types/types';
 
 @Directive({
-  selector: '[appLayoutItem]'
+  selector: '[appLayoutItem]',
 })
 export class LayoutItemDirective implements OnChanges {
   @Input() componentInfo: IComponent | undefined;
   component!: ComponentRef<any>;
 
-  constructor(
-    private container: ViewContainerRef,
-  ) {
-  }
+  constructor(private container: ViewContainerRef) {}
 
   ngOnChanges(): void {
     // @ts-ignore

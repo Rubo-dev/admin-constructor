@@ -12,12 +12,4 @@ export class BlockService {
   public setBlock(block: DomElement): void {
     return this.domElements$.next(block);
   }
-
-  // public getComponent(component: any, data?: any) {
-  //   console.log(data);
-  //   return new ComponentItem(
-  //     component,
-  //     data
-  //   )
-  // }
 }

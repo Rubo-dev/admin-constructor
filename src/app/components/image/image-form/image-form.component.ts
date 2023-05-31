@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,21 +10,23 @@ export class ImageFormComponent implements OnInit {
   public form!: FormGroup;
   @Output() public save = new EventEmitter();
   private imgUrl: string = '';
-
-  constructor(private formBuilder: FormBuilder) {}
+  private formBuilder = inject(FormBuilder);
+  private uploadRef: any;
 
   ngOnInit(): void {
     this.initForm();
   }
 
-  public myUploader(event: any) {
+  public myUploader(event: any, fileUpload: any) {
     if (event.files && event.files[0]) {
       this.imgUrl = URL.createObjectURL(event.files[0]);
+      this.uploadRef = fileUpload;
     }
   }
 
   public submit(): void {
     this.save.emit({ styles: this.form.getRawValue(), props: this.imgUrl });
+    this.uploadRef.clear();
   }
 
   private initForm(): void {

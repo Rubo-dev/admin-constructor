@@ -1,8 +1,9 @@
 <div class="mb-2">
-  <p-fileUpload (uploadHandler)="myUploader($event)"
+  <p-fileUpload (uploadHandler)="myUploader($event,fileUpload)"
+  #fileUpload
                 [auto]="true"
                 [customUpload]="true"
-                [showCancelButton]="false"
+                [showCancelButton]="true"
                 [showUploadButton]="false"
                 name="file[]">
 

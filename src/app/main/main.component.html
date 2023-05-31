@@ -1,6 +1,7 @@
 <div class="flex p-6 h-full mb-auto">
   <app-sidebar></app-sidebar>
   <div class="w-full border-l-2 h-full">
+    <p class="text-xl pl-4 mb-4">Your components will be shown here</p>
     <gridster [options]="options">
       <gridster-item
         (dragover)="layoutService.setDropId(item['id'])"
@@ -15,6 +16,7 @@
         <button
           (click)="layoutService.deleteItem(item['id'])"
           label="Delete"
+          styleClass="p-button-danger"
           pButton
         ></button>
       </gridster-item>

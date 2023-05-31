@@ -33,6 +33,9 @@ export class MenuFormComponent implements OnInit {
       this.inputForm.markAsTouched();
     } else {
       this.save.emit(this.inputForm.getRawValue().menuItems);
+      this.inputForm = this.formBuilder.group({
+        menuItems: this.formBuilder.array([]),
+      });
     }
   }
 
